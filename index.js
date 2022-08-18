@@ -27,3 +27,29 @@ function checkPangram(str) {
 
 const result = checkPangram('Jock nymphs waqf drug vex blitz')
 console.log(result)
+
+
+// convert 12 hr to 24 hr
+// 01: 02 PM
+
+const convert12To24 = time12h => {
+
+    const [time, modifier] = time12h.split(' ');
+
+    let [hours, minutes] = time.split(':');
+
+    if (hours === '12') {
+        hours = '00';
+    }
+
+    if (modifier === 'PM') {
+        hours = parseInt(hours) + 12
+    }
+
+    return `${hours}:${minutes}`
+}
+
+console.log(convert12To24('01:02 PM'))
+console.log(convert12To24('04:06 PM'))
+console.log(convert12To24('12:02 PM'))
+console.log(convert12To24('12:37 AM'))
