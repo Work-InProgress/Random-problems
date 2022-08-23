@@ -53,3 +53,17 @@ console.log(convert12To24('01:02 PM'))
 console.log(convert12To24('04:06 PM'))
 console.log(convert12To24('12:02 PM'))
 console.log(convert12To24('12:37 AM'))
+
+//map vs forEach
+
+const arr = [1, 3, 4, 8, 16]
+
+const mapResult = arr.map(num => {
+    return num + 2
+}) //can chain other methods for array 
+
+const forEachResult = arr.forEach(num => {
+    return num + 2
+})
+
+console.log(mapResult, forEachResult)
