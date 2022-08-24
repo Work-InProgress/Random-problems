@@ -67,3 +67,46 @@ const forEachResult = arr.forEach(num => {
 })
 
 console.log(mapResult, forEachResult)
+
+
+//Caching/memoize a function
+
+function myMemoize(fn, context) {
+    const res = {};
+    return (...args) => {
+        var argsCache = JSON.stringify(args);
+        if (!res[argsCache]) {
+            res[argsCache] = fn.call(context || this, ...args)
+        }
+        return res[argsCache]
+
+    }
+}
+
+const badProduct = (num1, num2) => {
+    for (let i = 1; i <= 100000000; i++) {
+    }
+    return num1 * num2
+}
+
+const memoizedBadProduct = myMemoize(badProduct)
+
+console.time('First call');
+console.log(memoizedBadProduct(9432, 6542))
+console.timeEnd('First call')
+
+console.time('Second call');
+console.log(memoizedBadProduct(9432, 6542))
+console.timeEnd('Second call')
+
+
+//Infinite currying
+
+function add(a) {
+    return function (b) {
+        if (b) return add(a + b);
+        return a;
+    };
+}
+
+console.log(add(5)(2)(4)(8)());
