@@ -110,3 +110,47 @@ function add(a) {
 }
 
 console.log(add(5)(2)(4)(8)());
+
+//Explicit Binding, call, bind, apply
+//call
+var obj = { name: 'Alex' };
+
+function sayHello(age) {
+    return 'Hello ' + this.name + ' is ' + age
+}
+
+console.log(sayHello.call(obj, 24))
+
+//apply
+
+function sayGreeting(age, profession) {
+    return 'Hello ' + this.name + ' is ' + age + 'and he is a ' + profession
+}
+
+console.log(sayGreeting.apply(obj, [28, 'Web developer']))
+
+// bind 
+function sayRegards(age, profession) {
+    return 'Hello ' + this.name + ' is ' + age + ' and he is a ' + profession
+}
+
+const bindFunc = sayRegards.bind(obj)
+console.log(bindFunc(29, 'Web developer'))
+
+//Private variable
+
+function secretVariable() {
+    var private = 'Secret code'
+    return function () {
+        return private
+    }
+}
+
+const getPrivateVariable = secretVariable()
+
+console.log(getPrivateVariable())
+
+
+
+
+
