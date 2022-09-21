@@ -165,6 +165,67 @@ function outer() {
 
 outer()
 
+//Audemic inte4rview, check for correct passwords
+
+function getCount(character, str) {
+    let count = 0
+    const arr = str.split('')
+
+    arr.forEach(char => {
+        if (char == character) {
+            count++
+        }
+    })
+    return count
+}
+
+const checkRange = (number, start, end) => {
+
+    if (number >= start && number <= end) {
+        return true
+    } else {
+        return false
+    }
+
+}
+
+// console.log(checkRange(getCount(charToTest, stringToTest), startNum, endNum))
+
+
+let data = require("fs").readFileSync("data.CSV", "utf8")
+
+console.log(typeof (data))
+
+let fullData = data.split('\n')
+
+console.log(fullData)
+
+let countOfResults = 0
+fullData.forEach(eachPassword => {
+    let example1 = eachPassword
+    let arrExample = example1.split(' ')
+
+    console.log(arrExample)
+
+    let arrOfNumbers = arrExample[0].split('-')
+    console.log(arrOfNumbers)
+
+    let charToTest = arrExample[1][0]
+
+    console.log(charToTest)
+
+    let stringToTest = arrExample[2]
+
+    let startNum = Number(arrOfNumbers[0])
+
+    let endNum = Number(arrOfNumbers[1])
+    if (checkRange(getCount(charToTest, stringToTest), startNum, endNum) == true) {
+        countOfResults++
+    }
+    console.log(countOfResults)
+})
+
+
 
 
 
