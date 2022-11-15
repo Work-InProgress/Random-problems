@@ -248,3 +248,24 @@ const gridTraveler = (m, n, memo = {}) => {
     memo[key] = gridTraveler(m - 1, n, memo) + gridTraveler(m, n - 1, memo);
     return memo[key]
 };
+
+//canSum
+
+const canSum = (targetSum, numbers, memo = {}) => {
+    if (targetSum in memo) return memo[targetSum];
+    if (targetSum === 0) return true;
+    if (targetSum < 0) return false;
+
+
+    for (let num of numbers) {
+
+        const remainder = targetSum - num;
+        if (canSum(remainder, numbers, memo) === true) {
+            memo[targetSum] = true;
+            return true;
+        }
+    }
+    memo[targetSum] = false;
+
+    return false;
+}
