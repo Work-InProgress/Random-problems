@@ -332,3 +332,20 @@ const canConstruct = (target, wordBank, memo = {}) => {
     memo[target] = false;
     return false;
 }
+
+//countConstruct memoization
+
+const countConstruct = (target, wordBank, memo = {}) => {
+    if (target in memo) return memo[target];
+    if (target === '') return 1;
+
+    let counter = 0;
+    for (let word of wordBank) {
+        if (target.indexOf(word) === 0) {
+            const numWaysForRest = countConstruct(target.slice(word.length), wordBank, memo);
+            counter += numWaysForRest;
+        }
+    }
+    memo[target] = counter;
+    return counter;
+}
